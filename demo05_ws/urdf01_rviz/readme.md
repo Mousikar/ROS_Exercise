@@ -1,12 +1,12 @@
 # demo05_ws
 
-1. urdf01_rviz
+## 1. urdf01_rviz 功能包
 
-`roslaunch urdf01_rviz demo01_helloworld.launch`
+### `roslaunch urdf01_rviz demo01_helloworld.launch`
 
-`roslaunch urdf01_rviz demo02_link.launch`
+### `roslaunch urdf01_rviz demo02_link.launch`
 
-`roslaunch urdf01_rviz demo03_joint.launch`
+### `roslaunch urdf01_rviz demo03_joint.launch`
 
 带有注释版本的demo05_ws/src/urdf01_rviz/urdf/urdf/demo03_joint.urdf
 ```
@@ -66,7 +66,29 @@
 
 抖动是因为joint_state_publisher与joint_state_publisher_gui发布消息叠加导致的，可以把前面的joint_state_publisher注释掉
 
-`roslaunch urdf01_rviz demo04_base_footprint.launch`
+### `roslaunch urdf01_rviz demo04_base_footprint.launch`
 
 fixed frame 改成 base_footprint
 ![图片](https://user-images.githubusercontent.com/103837402/233761152-62256d22-51ce-42a0-bd42-ce09161278ce.png)
+
+### `roslaunch urdf01_rviz demo05_test.launch`
+![图片](https://user-images.githubusercontent.com/103837402/233772835-2d615407-f5df-41d9-8014-66af2384b61f.png)
+
+### URDF工具
+在 ROS 中，提供了一些工具来方便 URDF 文件的编写，比如:
+
+- check_urdf命令可以检查复杂的 urdf 文件是否存在语法问题
+
+- urdf_to_graphiz命令可以查看 urdf 模型结构，显示不同 link 的层级关系
+
+当然，要使用工具之前，首先需要安装，安装命令:`sudo apt install liburdfdom-tools`
+
+例如：
+
+~/code/urdfdemo/demo05_ws$ `cd ./src/urdf01_rviz/urdf/urdf/`
+
+~/code/urdfdemo/demo05_ws/src/urdf01_rviz/urdf/urdf$ `urdf_to_graphiz demo05_test.urdf`
+
+~/code/urdfdemo/demo05_ws/src/urdf01_rviz/urdf/urdf$ `evince mycar.pdf`
+
+![图片](https://user-images.githubusercontent.com/103837402/233773227-ec458cbc-04f2-4d2d-9ee4-86b09820e73a.png)
