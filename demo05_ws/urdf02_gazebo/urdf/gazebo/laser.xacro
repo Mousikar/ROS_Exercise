@@ -1,0 +1,36 @@
+<robot name="my_sensors" xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <!-- 雷达 -->
+  <gazebo reference="laser"> <!-- 需要修改成和demo07_car_laser.urdf.xacro中laser连杆一样的名称 -->
+    <sensor type="ray" name="rplidar">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>5.5</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution> <!-- 每一个射线测距一次 -->
+            <min_angle>-3</min_angle> <!-- 单位：弧度 -->
+            <max_angle>3</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min> <!-- 最近0.1m，小于0.1m就采样不到 -->
+          <max>30.0</max> <!-- 最远30m，大于30m就采样不到 -->
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type> <!-- 主要为了仿真，实际测距并不是完美精确，有一定的波动 -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_rplidar" filename="libgazebo_ros_laser.so">
+        <topicName>/scan</topicName>
+        <frameName>laser</frameName> <!-- 需要修改成和demo07_car_laser.urdf.xacro中laser连杆一样的名称 -->
+      </plugin>
+    </sensor>
+  </gazebo>
+
+</robot>
